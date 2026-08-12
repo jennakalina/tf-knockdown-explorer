@@ -24,7 +24,7 @@
   --status-down-bg:  rgba(227, 73, 72, 0.09);
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root:where(:not([data-theme="light"])) {
     color-scheme: dark;
     --page-plane:      #0d0d0d;
