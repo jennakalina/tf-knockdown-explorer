@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TF Knockdown Data Explorer</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="site-nav" id="site-nav"></nav>
+  </header>
+
+  <main class="page">
+    <h1 class="page-title">TF Knockdown Data Explorer</h1>
+    <p class="page-subtitle">
+      Browse results from transcription-factor knockdown screens. Pick a
+      dataset below to search and explore.
+    </p>
+
+    <div class="tab-grid" id="tab-cards"></div>
+  </main>
+
+  <footer class="site-footer">TF Knockdown Data Explorer</footer>
+
+  <script src="assets/js/nav.js"></script>
+  <script>
+    function renderHomeCards() {
+      const container = document.getElementById("tab-cards");
+      container.innerHTML = SITE_TABS.map(
+        (tab) => `
+        <a class="tab-card" href="${tab.href}">
+          <h3>${tab.label}</h3>
+          <p>${tab.description}</p>
+        </a>`
+      ).join("");
+    }
+    renderNav(null);
+    renderHomeCards();
+  </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browse Differential Analysis Results — TF Knockdown Data Explorer</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="site-nav" id="site-nav"></nav>
+  </header>
+
+  <main class="page">
+    <h1 class="page-title">Browse Differential Analysis Results</h1>
+    <p class="page-subtitle">
+      Search differential metabolite (DAMs) and protein (DAPs) results by
+      target gene (the TF knocked down), metabolite/protein name, or RNAi
+      line. Rows are highlighted by regulation direction.
+    </p>
+
+    <div class="controls-bar">
+      <div class="dataset-toggle">
+        <button data-key="dams" class="active">Metabolites (DAMs)</button>
+        <button data-key="daps">Proteins (DAPs)</button>
+      </div>
+
+      <div class="search-wrap">
+        <input
+          id="search-input"
+          class="search-input"
+          type="text"
+          placeholder="Search by target TF, metabolite/protein, or RNAi line…"
+          autocomplete="off"
+        />
+      </div>
+
+      <label class="checkbox-field">
+        <input type="checkbox" id="sig-only" />
+        Significant only
+      </label>
+
+      <span class="result-count" id="result-count"></span>
+    </div>
+
+    <div class="legend">
+      <span class="legend-item"><span class="legend-swatch swatch-up"></span> Upregulated</span>
+      <span class="legend-item"><span class="legend-swatch swatch-down"></span> Downregulated</span>
+      <span class="legend-item"><span class="legend-swatch swatch-ns"></span> Not significant / NA</span>
+    </div>
+
+    <div id="results-table" class="vtable-viewport">
+      <div class="loading-state">Loading…</div>
+    </div>
+  </main>
+
+  <footer class="site-footer">TF Knockdown Data Explorer</footer>
+
+  <script src="assets/js/nav.js"></script>
+  <script src="assets/js/virtual-table.js"></script>
+  <script src="assets/js/differential-analysis.js"></script>
+</body>
+</html>
