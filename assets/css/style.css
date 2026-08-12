@@ -25,23 +25,23 @@
 }
 
 @media (prefers-color-scheme: light) {
-  :root:where(:not([data-theme="light"])) {
-    color-scheme: dark;
-    --page-plane:      #0d0d0d;
-    --surface-1:       #1a1a19;
-    --text-primary:    #ffffff;
-    --text-secondary:  #c3c2b7;
+  :root:where(:not([data-theme="dark"])) {
+    color-scheme: light;
+    --page-plane:      #f9f9f7;
+    --surface-1:       #fcfcfb;
+    --text-primary:    #0b0b0b;
+    --text-secondary:  #52514e;
     --text-muted:      #898781;
-    --gridline:        #2c2c2a;
-    --baseline:        #383835;
-    --border:          rgba(255, 255, 255, 0.10);
+    --gridline:        #e1e0d9;
+    --baseline:        #c3c2b7;
+    --border:          rgba(11, 11, 11, 0.10);
 
-    --status-up:       #3987e5;
-    --status-down:     #e66767;
-    --status-neutral:  #898781;
+    --status-up:       #2a78d6;   /* diverging: blue */
+    --status-down:     #e34948;   /* diverging: red */
+    --status-neutral:  #898781;   /* not significant / NA */
 
-    --status-up-bg:    rgba(57, 135, 229, 0.14);
-    --status-down-bg:  rgba(230, 103, 103, 0.14);
+    --status-up-bg:    rgba(42, 120, 214, 0.09);
+    --status-down-bg:  rgba(227, 73, 72, 0.09);
   }
 }
 
