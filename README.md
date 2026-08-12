@@ -1,6 +1,6 @@
 # TF Knockdown Data Explorer
 
-An interactive interface for browsing a global TF knockdown dataset.
+A web interface for browsing a global TF knockdown dataset.
 
 ## Tabs
 
