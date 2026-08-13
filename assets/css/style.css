@@ -1,8 +1,7 @@
 /* ============================================================
    TF Knockdown Data Explorer — shared styles
-   Color roles follow the light/dark palette convention:
-   surfaces, ink, gridlines, and a blue/red diverging pair for
-   up/down regulation status.
+   Light mode only: surfaces, ink, gridlines, and a blue/red
+   diverging pair for up/down regulation status.
    ============================================================ */
 
 :root {
@@ -23,6 +22,9 @@
   --status-up-bg:    rgba(42, 120, 214, 0.09);
   --status-down-bg:  rgba(227, 73, 72, 0.09);
 }
+
+/* Dark mode intentionally removed — the site always renders with the
+   :root values above, regardless of the visitor's OS/browser theme. */
 
 * { box-sizing: border-box; }
 
@@ -342,6 +344,175 @@ a:hover { text-decoration: underline; }
 
 .reg-pill.reg-ns, .reg-pill.reg-na { color: var(--text-muted); }
 .reg-pill.reg-ns::before, .reg-pill.reg-na::before { background: var(--status-neutral); opacity: 0.5; }
+
+/* Concordance direction codes (c = concordant, d = discordant) share the
+   same blue/red status colors as the up/down regulation codes above. */
+.reg-pill.reg-c { color: var(--status-up); }
+.reg-pill.reg-c::before { background: var(--status-up); }
+
+.reg-pill.reg-d { color: var(--status-down); }
+.reg-pill.reg-d::before { background: var(--status-down); }
+
+.vtable-row.reg-c { background: var(--status-up-bg); }
+.vtable-row.reg-d { background: var(--status-down-bg); }
+
+/* ---------- Combobox fields (PMI pair search) ---------- */
+
+.pair-controls {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.combo-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 220px;
+  flex: 1;
+}
+
+.combo-field label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.combo-field input {
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+.combo-field input:focus {
+  outline: 2px solid var(--status-up);
+  outline-offset: -1px;
+}
+
+.combo-field input.invalid {
+  border-color: var(--status-down);
+}
+
+.combo-hint {
+  font-size: 12px;
+  color: var(--text-muted);
+  min-height: 16px;
+}
+
+.combo-hint.is-invalid { color: var(--status-down); }
+
+/* ---------- Pair result stat tiles ---------- */
+
+.stat-tile-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.stat-tile {
+  flex: 1;
+  min-width: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-tile-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.stat-tile-value {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Scatter plot ---------- */
+
+.scatter-panel {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.scatter-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.scatter-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.scatter-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.scatter-svg {
+  width: 100%;
+  height: auto;
+  max-width: 720px;
+  display: block;
+  margin: 0 auto;
+}
+
+.scatter-svg .axis-line {
+  stroke: var(--baseline);
+  stroke-dasharray: 4 4;
+  stroke-width: 1;
+}
+
+.scatter-svg .axis-title {
+  fill: var(--text-secondary);
+  font-size: 12.5px;
+}
+
+.scatter-svg .point-label {
+  fill: var(--text-muted);
+  font-size: 9.5px;
+  pointer-events: none;
+}
+
+.scatter-svg .annotation-text {
+  fill: var(--text-secondary);
+  font-size: 12.5px;
+}
+
+.scatter-svg .plot-title {
+  fill: var(--text-primary);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.scatter-svg circle.pt-c { fill: var(--status-up); }
+.scatter-svg circle.pt-d { fill: var(--status-down); }
+.scatter-svg circle { stroke: var(--surface-1); stroke-width: 1; cursor: pointer; }
+.scatter-svg circle:hover { stroke: var(--text-primary); }
 
 .empty-state {
   padding: 40px 16px;
