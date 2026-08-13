@@ -487,6 +487,23 @@ a:hover { text-decoration: underline; }
   stroke-width: 1;
 }
 
+.scatter-svg .plot-frame {
+  fill: none;
+  stroke: var(--gridline);
+  stroke-width: 1;
+}
+
+.scatter-svg .tick-line {
+  stroke: var(--baseline);
+  stroke-width: 1;
+}
+
+.scatter-svg .tick-label {
+  fill: var(--text-muted);
+  font-size: 10.5px;
+  font-variant-numeric: tabular-nums;
+}
+
 .scatter-svg .axis-title {
   fill: var(--text-secondary);
   font-size: 12.5px;
