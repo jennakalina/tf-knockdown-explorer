@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browse Concordance Results — TF Knockdown Data Explorer</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="site-nav" id="site-nav"></nav>
+  </header>
+
+  <main class="page">
+    <h1 class="page-title">Browse Concordance Results</h1>
+    <p class="page-subtitle">
+      Explore protein–metabolite interaction (PMI) concordance — whether a
+      protein and metabolite move in the same direction (concordant) or
+      opposite directions (discordant) across samples, compared to control.
+    </p>
+
+    <div class="controls-bar">
+      <div class="dataset-toggle" id="mode-toggle">
+        <button data-mode="single" class="active">Single analyte search</button>
+        <button data-mode="pair">PMI pair search</button>
+      </div>
+    </div>
+
+    <!-- ============ Single analyte search ============ -->
+    <section id="single-panel">
+      <div class="controls-bar">
+        <div class="search-wrap">
+          <input
+            id="analyte-search-input"
+            class="search-input"
+            type="text"
+            placeholder="Search by protein or metabolite name…"
+            autocomplete="off"
+          />
+        </div>
+        <span class="result-count" id="analyte-result-count"></span>
+      </div>
+
+      <div class="legend" style="margin-top: 12px;">
+        <span class="legend-item"><span class="legend-swatch swatch-up"></span> Concordant</span>
+        <span class="legend-item"><span class="legend-swatch swatch-down"></span> Discordant</span>
+        <span class="legend-item"><span class="legend-swatch swatch-ns"></span> Not significant</span>
+      </div>
+
+      <div id="analyte-results-table" class="vtable-viewport" style="margin-top: 12px;">
+        <div class="empty-state">Type a protein or metabolite name above to search.</div>
+      </div>
+    </section>
+
+    <!-- ============ PMI pair search ============ -->
+    <section id="pair-panel" style="display:none;">
+      <div class="controls-bar">
+        <div class="pair-controls">
+          <div class="combo-field">
+            <label for="protein-input">Protein</label>
+            <input id="protein-input" type="text" list="protein-datalist" placeholder="Start typing a protein…" autocomplete="off" />
+            <datalist id="protein-datalist"></datalist>
+          </div>
+          <div class="combo-field">
+            <label for="metabolite-input">Metabolite</label>
+            <input id="metabolite-input" type="text" list="metabolite-datalist" placeholder="Start typing a metabolite…" autocomplete="off" />
+            <datalist id="metabolite-datalist"></datalist>
+          </div>
+        </div>
+        <div class="combo-hint" id="pair-hint">Select an exact protein and metabolite to see their result.</div>
+      </div>
+
+      <div id="pair-output" style="margin-top: 16px; display: flex; flex-direction: column; gap: 16px;">
+        <div class="empty-state">Choose a protein and a metabolite above.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">TF Knockdown Data Explorer</footer>
+
+  <script src="assets/js/nav.js"></script>
+  <script src="assets/js/virtual-table.js"></script>
+  <script src="assets/js/concordance-results.js"></script>
+</body>
+</html>
