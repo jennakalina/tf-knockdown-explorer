@@ -12,6 +12,13 @@ const SITE_TABS = [
     description:
       "Search differential metabolite (DAMs) and protein (DAPs) abundance results across TF knockdown RNAi lines, by target gene, metabolite, or protein.",
   },
+  {
+    id: "concordance-results",
+    label: "Browse Concordance Results",
+    href: "concordance-results.html",
+    description:
+      "Search protein-metabolite interaction (PMI) concordance results — whether a protein and metabolite move up/down together across samples — by single analyte or by exact pair, with a quadrant plot per pair.",
+  },
   // Add future tabs here, e.g.:
   // {
   //   id: "another-dataset",
