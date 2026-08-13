@@ -14,15 +14,16 @@
   <main class="page">
     <h1 class="page-title">Browse Differential Analysis Results</h1>
     <p class="page-subtitle">
-      Search differential metabolite (DAMs) and protein (DAPs) results by
-      target gene (the TF knocked down), metabolite/protein name, or RNAi
-      line. Rows are highlighted by regulation direction.
+      Search differentially abundant metabolite and protein results by
+      knocked-down TF (target), metabolite/protein name, or RNAi
+      line. Rows are colored by regulation direction and ordered by adjusted p-value.
+      Analyses for metabolites and proteins were completed separately.
     </p>
 
     <div class="controls-bar">
       <div class="dataset-toggle">
-        <button data-key="dams" class="active">Metabolites (DAMs)</button>
-        <button data-key="daps">Proteins (DAPs)</button>
+        <button data-key="dams" class="active">Metabolites</button>
+        <button data-key="daps">Proteins</button>
       </div>
 
       <div class="search-wrap">
@@ -46,7 +47,7 @@
     <div class="legend">
       <span class="legend-item"><span class="legend-swatch swatch-up"></span> Upregulated</span>
       <span class="legend-item"><span class="legend-swatch swatch-down"></span> Downregulated</span>
-      <span class="legend-item"><span class="legend-swatch swatch-ns"></span> Not significant / NA</span>
+      <span class="legend-item"><span class="legend-swatch swatch-ns"></span> Not significant</span>
     </div>
 
     <div id="results-table" class="vtable-viewport">
