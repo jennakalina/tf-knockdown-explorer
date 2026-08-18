@@ -2,6 +2,8 @@
 
 A web interface for browsing a global TF knockdown dataset.
 
+https://jennakalina.github.io/tf-knockdown-explorer/index.html
+
 ## Tabs
 
 ### Differential Analysis
