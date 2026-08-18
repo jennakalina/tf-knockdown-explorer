@@ -320,6 +320,25 @@ a:hover { text-decoration: underline; }
 
 .vtable-header .vtable-cell { padding: 10px 12px; }
 
+.vtable-th {
+  cursor: pointer;
+  user-select: none;
+}
+
+.vtable-th:hover {
+  color: var(--text-primary);
+}
+
+.vtable-th-active {
+  color: var(--status-up);
+}
+
+.sort-arrow {
+  font-size: 10px;
+  display: inline-block;
+  width: 10px;
+}
+
 .reg-pill {
   display: inline-flex;
   align-items: center;
