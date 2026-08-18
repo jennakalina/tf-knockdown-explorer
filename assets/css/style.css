@@ -1,30 +1,30 @@
 /* ============================================================
-   TF Knockdown Data Explorer — shared styles
-   Light mode only: surfaces, ink, gridlines, and a blue/red
-   diverging pair for up/down regulation status.
-   ============================================================ */
-
-:root {
-  color-scheme: light;
-  --page-plane:      #f9f9f7;
-  --surface-1:       #fcfcfb;
-  --text-primary:    #0b0b0b;
-  --text-secondary:  #52514e;
-  --text-muted:      #898781;
-  --gridline:        #e1e0d9;
-  --baseline:        #c3c2b7;
-  --border:          rgba(11, 11, 11, 0.10);
-
-  --status-up:       #2a78d6;   /* diverging: blue */
-  --status-down:     #e34948;   /* diverging: red */
-  --status-neutral:  #898781;   /* not significant / NA */
-
-  --status-up-bg:    rgba(42, 120, 214, 0.09);
-  --status-down-bg:  rgba(227, 73, 72, 0.09);
-}
+  TF Knockdown Data Explorer — shared styles
+Light mode only: surfaces, ink, gridlines, and a blue/red
+diverging pair for up/down regulation status.
+============================================================ */
+  
+  :root {
+    color-scheme: light;
+    --page-plane:      #f9f9f7;
+      --surface-1:       #fcfcfb;
+      --text-primary:    #0b0b0b;
+      --text-secondary:  #52514e;
+      --text-muted:      #898781;
+      --gridline:        #e1e0d9;
+      --baseline:        #c3c2b7;
+      --border:          rgba(11, 11, 11, 0.10);
+    
+    --status-up:       #2a78d6;   /* diverging: blue */
+      --status-down:     #e34948;   /* diverging: red */
+      --status-neutral:  #898781;   /* not significant / NA */
+      
+      --status-up-bg:    rgba(42, 120, 214, 0.09);
+    --status-down-bg:  rgba(227, 73, 72, 0.09);
+  }
 
 /* Dark mode intentionally removed — the site always renders with the
-   :root values above, regardless of the visitor's OS/browser theme. */
+:root values above, regardless of the visitor's OS/browser theme. */
 
 * { box-sizing: border-box; }
 
@@ -319,25 +319,6 @@ a:hover { text-decoration: underline; }
 }
 
 .vtable-header .vtable-cell { padding: 10px 12px; }
-
-.vtable-th {
-  cursor: pointer;
-  user-select: none;
-}
-
-.vtable-th:hover {
-  color: var(--text-primary);
-}
-
-.vtable-th-active {
-  color: var(--status-up);
-}
-
-.sort-arrow {
-  font-size: 10px;
-  display: inline-block;
-  width: 10px;
-}
 
 .reg-pill {
   display: inline-flex;
