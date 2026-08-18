@@ -1,11 +1,11 @@
 /* ============================================================
-  Page logic for differential-analysis.html
-Loads the DAMs (metabolites) and DAPs (proteins) result sets
-and wires up dataset toggle, search, "significant only" filter,
-and the virtualized results table.
-============================================================ */
-  
-  const REG_LABEL = { up: "Up", down: "Down", ns: "Not sig.", na: "NA" };
+   Page logic for differential-analysis.html
+   Loads the DAMs (metabolites) and DAPs (proteins) result sets
+   and wires up dataset toggle, search, "significant only" filter,
+   and the virtualized results table.
+   ============================================================ */
+
+const REG_LABEL = { up: "Up", down: "Down", ns: "Not sig.", na: "NA" };
 
 const DATASETS = {
   dams: { url: "data/dams.data.js", label: "Metabolites (DAMs)", nameCol: "Metabolite" },
@@ -18,8 +18,29 @@ const state = {
   filtered: [], // currently-displayed rows for the active dataset
   query: "",
   sigOnly: false,
+  sort: { key: "padj", dir: "asc" },
   table: null,
 };
+
+// Column index into each raw row array, and its type — used for sorting.
+const COL_IDX = { rnai: 0, name: 1, log2fc: 2, pvalue: 3, padj: 4, target: 5, reg: 6 };
+const COL_TYPE = { rnai: "string", name: "string", log2fc: "number", pvalue: "number", padj: "number", target: "string", reg: "string" };
+
+function compareValues(a, b, type) {
+  if (type === "number") {
+    const an = a === null || a === undefined || Number.isNaN(a) ? Infinity : a;
+    const bn = b === null || b === undefined || Number.isNaN(b) ? Infinity : b;
+    return an - bn;
+  }
+  return String(a).localeCompare(String(b));
+}
+
+function sortRows(rows, key, dir) {
+  const idx = COL_IDX[key];
+  const type = COL_TYPE[key] || "string";
+  const factor = dir === "desc" ? -1 : 1;
+  return rows.slice().sort((a, b) => factor * compareValues(a[idx], b[idx], type));
+}
 
 function fmtNum(n, digits = 3) {
   if (n === null || n === undefined || Number.isNaN(n)) return "NA";
@@ -31,23 +52,23 @@ function fmtNum(n, digits = 3) {
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, (c) => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
-}[c]));
+  }[c]));
 }
 
 // Data files are loaded as plain <script> tags (not fetch/XHR) so the site
 // works when opened directly from disk (file://) as well as when hosted —
 // fetch() of local files is blocked by CORS under file://, but a <script src>
-  // load is not subject to that restriction.
+// load is not subject to that restriction.
 function loadDataset(key) {
   if (state.data[key]) return Promise.resolve(state.data[key]);
-  
+
   const globalKey = key; // matches window.__TF_DATA.<key> set by data/*.data.js
   window.__TF_DATA = window.__TF_DATA || {};
   if (window.__TF_DATA[globalKey]) {
     state.data[key] = window.__TF_DATA[globalKey];
     return Promise.resolve(state.data[key]);
   }
-  
+
   return new Promise((resolve, reject) => {
     const cfg = DATASETS[key];
     const script = document.createElement("script");
@@ -69,24 +90,34 @@ function loadDataset(key) {
 function applyFilters() {
   const ds = state.data[state.active];
   if (!ds) return;
-  
+
   const tokens = state.query.trim().toLowerCase().split(/\s+/).filter(Boolean);
   const idx = { rnai: 0, name: 1, log2fc: 2, pvalue: 3, padj: 4, target: 5, reg: 6 };
-  
+
   let rows = ds.rows;
-  
+
   if (tokens.length) {
     rows = rows.filter((r) => {
       const haystack = (r[idx.target] + " " + r[idx.name] + " " + r[idx.rnai]).toLowerCase();
       return tokens.every((t) => haystack.includes(t));
     });
   }
-  
+
   if (state.sigOnly) {
     rows = rows.filter((r) => r[idx.reg] === "up" || r[idx.reg] === "down");
   }
-  
-  state.filtered = rows;
+
+  state.filtered = sortRows(rows, state.sort.key, state.sort.dir);
+}
+
+function handleSort(key) {
+  if (state.sort.key === key) {
+    state.sort = { key, dir: state.sort.dir === "asc" ? "desc" : "asc" };
+  } else {
+    state.sort = { key, dir: "asc" };
+  }
+  if (state.table) state.table.setSort(state.sort.key, state.sort.dir);
+  refresh();
 }
 
 function rowToObj(r) {
@@ -132,6 +163,8 @@ function renderTable() {
       getRowCount: () => state.filtered.length,
       getRow: (i) => rowToObj(state.filtered[i]),
       rowClass: (row) => (row.reg === "up" ? "reg-up" : row.reg === "down" ? "reg-down" : ""),
+      onSort: handleSort,
+      sortState: state.sort,
     });
     state.table._active = state.active;
   }
@@ -162,23 +195,23 @@ function setActiveDataset(key) {
 
 async function init() {
   renderNav("differential-analysis");
-  
+
   document.querySelectorAll(".dataset-toggle button").forEach((btn) => {
     btn.addEventListener("click", () => setActiveDataset(btn.dataset.key));
   });
-  
+
   const searchInput = document.getElementById("search-input");
   searchInput.addEventListener("input", (e) => {
     state.query = e.target.value;
     refresh();
   });
-  
+
   const sigCheckbox = document.getElementById("sig-only");
   sigCheckbox.addEventListener("change", (e) => {
     state.sigOnly = e.target.checked;
     refresh();
   });
-  
+
   document.getElementById("results-table").innerHTML =
     `<div class="loading-state">Loading ${DATASETS[state.active].label}…</div>`;
   try {
