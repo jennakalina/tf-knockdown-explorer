@@ -16,16 +16,13 @@
     <p class="page-subtitle">
       Explore protein–metabolite interaction (PMI) concordance — whether a
       protein and metabolite move in the same direction (concordant) or
-      opposite directions (discordant) across samples compared to the control.
-
-      Search by single analyte (either metabolite or protein) to see all results
-      for possible PMI pairs ordered by adjusted p-value, or input an exact 
-      pair to see the concordance score and a plot of all samples labeled by TF.
+      opposite directions (discordant) across samples, compared to control.
     </p>
 
     <div class="controls-bar">
       <div class="dataset-toggle" id="mode-toggle">
         <button data-mode="single" class="active">Single analyte search</button>
+        <button data-mode="volcano">Volcano plot</button>
         <button data-mode="pair">PMI pair search</button>
       </div>
     </div>
@@ -53,6 +50,24 @@
 
       <div id="analyte-results-table" class="vtable-viewport" style="margin-top: 12px;">
         <div class="empty-state">Type a protein or metabolite name above to search.</div>
+      </div>
+    </section>
+
+    <!-- ============ Volcano plot ============ -->
+    <section id="volcano-panel" style="display:none;">
+      <div class="scatter-panel">
+        <div class="scatter-panel-header">
+          <span class="scatter-title">Volcano plot: protein–metabolite concordance</span>
+        </div>
+        <p class="page-subtitle" style="margin: 0;">
+          Hover a colored (significant) point for its protein–metabolite pair. Click a point to open it in PMI pair search.
+        </p>
+        <div id="volcano-wrap"><div class="loading-state">Loading concordance results…</div></div>
+        <div class="legend">
+          <span class="legend-item"><span class="legend-swatch swatch-up"></span> Concordant (significant)</span>
+          <span class="legend-item"><span class="legend-swatch swatch-down"></span> Discordant (significant)</span>
+          <span class="legend-item"><span class="legend-swatch swatch-ns"></span> Not significant</span>
+        </div>
       </div>
     </section>
 

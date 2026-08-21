@@ -550,6 +550,28 @@ a:hover { text-decoration: underline; }
 .scatter-svg circle { stroke: var(--surface-1); stroke-width: 1; cursor: pointer; }
 .scatter-svg circle:hover { stroke: var(--text-primary); }
 
+/* Volcano plot: a raster canvas (the ~180k not-significant points, drawn
+   once for speed) sits under an SVG overlay (frame/ticks/axes plus the
+   ~1-2k significant points, which stay real DOM nodes so they can have
+   native tooltips and click handlers). Both layers share one box so their
+   coordinate systems line up exactly. */
+.volcano-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.volcano-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
 .empty-state {
   padding: 40px 16px;
   text-align: center;
