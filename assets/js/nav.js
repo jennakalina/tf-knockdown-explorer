@@ -19,6 +19,13 @@ const SITE_TABS = [
     description:
       "Search concordance results by single analyte or by PMI (protein-metabolite interaction) pair.",
   },
+  {
+    id: "perturbation-clusters",
+    label: "Perturbation Clusters",
+    href: "perturbation-clusters.html",
+    description:
+      "Explore perturbation clusters of TF knockdown lines, including per-cluster DAM and DAP log2FC heatmaps.",
+  },
   // Add future tabs here, e.g.:
   // {
   //   id: "another-dataset",

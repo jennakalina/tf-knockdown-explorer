@@ -619,3 +619,171 @@ a:hover { text-decoration: underline; }
   color: var(--text-muted);
   font-size: 12.5px;
 }
+
+/* ---------- Perturbation clusters tab ---------- */
+
+.cluster-select-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cluster-select-field label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.cluster-select-field select {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cluster-select-field select:focus {
+  outline: 2px solid var(--status-up);
+  outline-offset: -1px;
+}
+
+.scatter-svg .cluster-point {
+  stroke: var(--surface-1);
+  stroke-width: 1;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.scatter-svg .cluster-point.is-dimmed {
+  opacity: 0.28;
+}
+
+.scatter-svg .cluster-point.is-selected {
+  stroke: var(--text-primary);
+  stroke-width: 2;
+}
+
+.scatter-svg .cluster-point-label {
+  fill: var(--text-secondary);
+  font-size: 9.5px;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.scatter-svg .cluster-point-label.is-dimmed {
+  opacity: 0.35;
+}
+
+/* ---------- Heatmaps (perturbation cluster DAMs/DAPs) ---------- */
+
+.heatmap-scroll {
+  overflow: auto;
+  max-height: 620px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.heatmap-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 11.5px;
+}
+
+.heatmap-table th,
+.heatmap-table td {
+  white-space: nowrap;
+}
+
+.heatmap-row-label {
+  position: sticky;
+  left: 0;
+  background: var(--surface-1);
+  padding: 3px 10px 3px 12px;
+  text-align: left;
+  color: var(--text-primary);
+  border-right: 1px solid var(--gridline);
+  border-bottom: 1px solid var(--gridline);
+  z-index: 1;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.heatmap-col-tf {
+  position: sticky;
+  top: 0;
+  background: var(--surface-1);
+  padding: 6px 4px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border);
+  border-left: 1px solid var(--gridline);
+  z-index: 2;
+}
+
+.heatmap-col-rnai {
+  position: sticky;
+  top: 26px;
+  background: var(--surface-1);
+  padding: 5px 4px;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--gridline);
+  border-left: 1px solid var(--gridline);
+  z-index: 2;
+  min-width: 46px;
+}
+
+.heatmap-corner {
+  position: sticky;
+  top: 0;
+  left: 0;
+  background: var(--surface-1);
+  z-index: 3;
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--gridline);
+}
+
+.heatmap-corner-2 {
+  top: 26px;
+}
+
+.heatmap-cell {
+  text-align: center;
+  padding: 3px 4px;
+  border-left: 1px solid var(--gridline);
+  border-bottom: 1px solid var(--gridline);
+  font-variant-numeric: tabular-nums;
+  min-width: 46px;
+}
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.heatmap-legend-bar {
+  width: 160px;
+  height: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+}
+
+.heatmap-meta {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}

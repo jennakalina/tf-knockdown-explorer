@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perturbation Clusters — TF Knockdown Data Explorer</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="site-nav" id="site-nav"></nav>
+  </header>
+
+  <main class="page">
+    <h1 class="page-title">Perturbation Clusters</h1>
+    <p class="page-subtitle">
+      TF knockdown lines clustered by Euclidean distance based on rCCA sample 
+      projection plots. Select a cluster (either click a point or use the dropdown) 
+      to see the differentially abundant metabolites and proteins shared by the TFs
+      within that cluster.
+    </p>
+
+    <div class="scatter-panel">
+      <div class="scatter-panel-header">
+        <span class="scatter-title">Sample projection plot by cluster</span>
+        <div class="cluster-select-field">
+          <label for="cluster-select">Cluster</label>
+          <select id="cluster-select">
+            <option value="">Select a cluster…</option>
+          </select>
+        </div>
+      </div>
+      <div id="cluster-scatter-wrap"><div class="loading-state">Loading cluster data…</div></div>
+      <div class="legend" id="cluster-legend"></div>
+    </div>
+
+    <div class="scatter-panel" id="dam-heatmap-panel" style="display:none;">
+      <div class="scatter-panel-header">
+        <span class="scatter-title">Cluster DAMs: log2FC by RNAi line</span>
+      </div>
+      <div id="dam-heatmap-wrap"></div>
+    </div>
+
+    <div class="scatter-panel" id="dap-heatmap-panel" style="display:none;">
+      <div class="scatter-panel-header">
+        <span class="scatter-title">Cluster DAPs: log2FC by RNAi line</span>
+      </div>
+      <div id="dap-heatmap-wrap"></div>
+    </div>
+
+    <div id="heatmap-hint" class="empty-state">
+      Select a cluster above to see its DAM/DAP heatmaps.
+    </div>
+  </main>
+
+  <footer class="site-footer">TF Knockdown Data Explorer</footer>
+
+  <script src="assets/js/nav.js"></script>
+  <script src="assets/js/perturbation-clusters.js"></script>
+</body>
+</html>
