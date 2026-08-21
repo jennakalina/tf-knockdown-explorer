@@ -572,6 +572,33 @@ a:hover { text-decoration: underline; }
   pointer-events: none;
 }
 
+/* Custom hover tooltip for the volcano plot's significant points, anchored
+   to the point itself (not the cursor) so it stays put on keyboard focus too. */
+.volcano-tooltip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  pointer-events: none;
+  z-index: 5;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: var(--text-primary);
+  box-shadow: 0 2px 8px rgba(11, 11, 11, 0.14);
+  white-space: nowrap;
+}
+
+.volcano-tooltip-sub {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
 .empty-state {
   padding: 40px 16px;
   text-align: center;
