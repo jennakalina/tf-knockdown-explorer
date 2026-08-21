@@ -80,9 +80,11 @@ function niceTicks(half, count = 5) {
 
 // ---------- diverging color scale for the heatmaps ----------
 // Blue for negative log2FC, white for 0, red for positive — the same
-// blue/red hex the rest of the site uses (--status-up / --status-down),
-// just applied to raw magnitude/polarity here rather than an up/down
-// significance call, so don't read "blue" as "up" in this one chart.
+// blue/red hex as --status-down / --status-up respectively, which now
+// matches the rest of the site's convention after the 2026-08-21 color
+// flip (down/discordant = blue, up/concordant = red). This chart still
+// encodes raw magnitude/polarity rather than an up/down significance
+// call, but the color mapping itself is consistent with everywhere else.
 const HEAT_NEG = [42, 120, 214]; // #2a78d6
 const HEAT_POS = [227, 73, 72]; // #e34948
 const HEAT_MID = [255, 255, 255];

@@ -262,8 +262,16 @@ a:hover { text-decoration: underline; }
   display: inline-block;
 }
 
-.swatch-up { background: var(--status-up); }
-.swatch-down { background: var(--status-down); }
+/* Data color coding is intentionally reversed from the --status-up/-down
+   variable names: up-regulation and concordance are red, down-regulation
+   and discordance are blue (per the user's request), matching the
+   perturbation-clusters heatmap's blue=negative/red=positive convention.
+   The variables themselves stay blue=up/red=down since they're also used
+   for unrelated UI chrome (active tab, focus rings, invalid-state color)
+   that should NOT flip — only the rules below deliberately point each data
+   class at the "wrong" variable to get the flipped color. */
+.swatch-up { background: var(--status-down); }
+.swatch-down { background: var(--status-up); }
 .swatch-ns { background: var(--status-neutral); opacity: 0.5; }
 
 /* ---------- Virtual table ---------- */
@@ -308,8 +316,8 @@ a:hover { text-decoration: underline; }
   font-variant-numeric: tabular-nums;
 }
 
-.vtable-row.reg-up { background: var(--status-up-bg); }
-.vtable-row.reg-down { background: var(--status-down-bg); }
+.vtable-row.reg-up { background: var(--status-down-bg); }
+.vtable-row.reg-down { background: var(--status-up-bg); }
 
 .vtable-cell {
   padding: 0 12px;
@@ -355,25 +363,26 @@ a:hover { text-decoration: underline; }
   display: inline-block;
 }
 
-.reg-pill.reg-up { color: var(--status-up); }
-.reg-pill.reg-up::before { background: var(--status-up); }
+.reg-pill.reg-up { color: var(--status-down); }
+.reg-pill.reg-up::before { background: var(--status-down); }
 
-.reg-pill.reg-down { color: var(--status-down); }
-.reg-pill.reg-down::before { background: var(--status-down); }
+.reg-pill.reg-down { color: var(--status-up); }
+.reg-pill.reg-down::before { background: var(--status-up); }
 
 .reg-pill.reg-ns, .reg-pill.reg-na { color: var(--text-muted); }
 .reg-pill.reg-ns::before, .reg-pill.reg-na::before { background: var(--status-neutral); opacity: 0.5; }
 
 /* Concordance direction codes (c = concordant, d = discordant) share the
-   same blue/red status colors as the up/down regulation codes above. */
-.reg-pill.reg-c { color: var(--status-up); }
-.reg-pill.reg-c::before { background: var(--status-up); }
+   same blue/red status colors as the up/down regulation codes above —
+   concordant/up = red, discordant/down = blue. */
+.reg-pill.reg-c { color: var(--status-down); }
+.reg-pill.reg-c::before { background: var(--status-down); }
 
-.reg-pill.reg-d { color: var(--status-down); }
-.reg-pill.reg-d::before { background: var(--status-down); }
+.reg-pill.reg-d { color: var(--status-up); }
+.reg-pill.reg-d::before { background: var(--status-up); }
 
-.vtable-row.reg-c { background: var(--status-up-bg); }
-.vtable-row.reg-d { background: var(--status-down-bg); }
+.vtable-row.reg-c { background: var(--status-down-bg); }
+.vtable-row.reg-d { background: var(--status-up-bg); }
 
 /* ---------- Combobox fields (PMI pair search) ---------- */
 
@@ -545,8 +554,11 @@ a:hover { text-decoration: underline; }
   font-weight: 700;
 }
 
-.scatter-svg circle.pt-c { fill: var(--status-up); }
-.scatter-svg circle.pt-d { fill: var(--status-down); }
+/* pt-c/pt-d (concordant/discordant) are used by both the PMI pair quadrant
+   plot and the volcano plot's significant points — concordant = red,
+   discordant = blue. */
+.scatter-svg circle.pt-c { fill: var(--status-down); }
+.scatter-svg circle.pt-d { fill: var(--status-up); }
 .scatter-svg circle { stroke: var(--surface-1); stroke-width: 1; cursor: pointer; }
 .scatter-svg circle:hover { stroke: var(--text-primary); }
 
