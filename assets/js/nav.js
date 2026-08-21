@@ -7,14 +7,14 @@
 const SITE_TABS = [
   {
     id: "differential-analysis",
-    label: "Browse Differential Analysis Results",
+    label: "Differential Analysis Results",
     href: "differential-analysis.html",
     description:
       "Search differentially abundant metabolite and protein results by knockdown target, metabolite/protein name, or RNAi line.",
   },
   {
     id: "concordance-results",
-    label: "Browse Concordance Results",
+    label: "Concordance Results",
     href: "concordance-results.html",
     description:
       "Search concordance results by single analyte or by PMI (protein-metabolite interaction) pair.",
