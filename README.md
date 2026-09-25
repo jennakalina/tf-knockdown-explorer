@@ -1,10 +1,14 @@
 # TF Knockdown Data Explorer
 
-A web interface for browsing a global TF knockdown dataset. See paper methods for additional information on all analyses performed
+Repository for a web interface browsing a global TF knockdown dataset and the associated scripts used to complete the analysis of raw data. See paper methods for additional information on all analyses performed.
 
 https://jennakalina.github.io/tf-knockdown-explorer/index.html
 
-## Tabs
+## Scripts
+
+The directory "scripts" contains all of the R scripts used to process the raw data and generate the data used for the web interface. Methods are described in the paper.
+
+## Web Interface Tabs
 
 ### Differential Analysis
 
